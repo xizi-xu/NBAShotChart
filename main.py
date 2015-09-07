@@ -3,6 +3,7 @@ import requests
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import drawCourt
 
 shot_chart_url = 'http://stats.nba.com/stats/shotchartdetail?CFID=33&CFPAR'\
                 'AMS=2014-15&ContextFilter=&ContextMeasure=FGA&DateFrom=&D'\
@@ -22,8 +23,23 @@ headers = response.json()['resultSets'][0]['headers']
 shots = response.json()['resultSets'][0]['rowSet']
 
 shot_df = pd.DataFrame(shots, columns=headers)
+
+# # View the head of the DataFrame and all its columns
+# from IPython.display import display
+# with pd.option_context('display.max_columns', None):
+#     display(shot_df.head())
+
 sns.set_style("white")
 sns.set_color_codes()
+
 plt.figure(figsize=(12,11))
 plt.scatter(shot_df.LOC_X, shot_df.LOC_Y)
+drawCourt.draw_court()
+# Adjust plot limits to just fit in half court
+plt.xlim(-250,250)
+# Descending values along th y axis from bottom to top
+# in order to place the hoop by the top of plot
+plt.ylim(422.5, -47.5)
+# get rid of axis tick labels
+# plt.tick_params(labelbottom=False, labelleft=False)
 plt.show()
