@@ -1,4 +1,3 @@
-# %matplotlib inline
 import requests
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -47,10 +46,10 @@ sns.set_style("white")
 sns.set_color_codes()
 
 plt.figure(figsize=(12,11))
-# plot Harden's shots
-plt.scatter(Harden_shot_df.LOC_X, Harden_shot_df.LOC_Y, color="r")
 # plot Westbrook's shots
 plt.scatter(Westbrook_shot_df.LOC_X, Westbrook_shot_df.LOC_Y, color="b")
+# plot Harden's shots
+plt.scatter(Harden_shot_df.LOC_X, Harden_shot_df.LOC_Y, color="r")
 
 drawCourt.draw_court()
 # Adjust plot limits to just fit in half court
